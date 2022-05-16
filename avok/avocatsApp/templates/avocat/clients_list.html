@@ -1,0 +1,51 @@
+{% extends 'avocat/layout.html' %}
+
+						{% block content %}
+							<h1>Liste des Clients</h1>
+
+							<div class="col-12 d-flex justify-content-end mb-2"> <a class="btn btn-primary sm " href="{% url 'client-add' %}">
+								Nouveau client
+						</a></div>
+						
+					  
+								<table class="table table-bordered table-striped table-hover">
+								  <thead class="table-dark">
+									<tr>
+										<th>ID </th>
+									  <th>Nom </th>
+                                      <th>Prenom</th>
+									  <th>Sexe</th>
+									  <th>Adresse</th>
+									  <th>Telephone</th>
+                                      <th>Profession du Client</th>
+									  <th>Actions</th>
+									</tr>
+								  </thead>
+								  <tbody>            
+									{% for client  in  clients %} 
+									<tr class="success">
+									  <td>{{client.idf}}</td>
+									  <td>{{client.nom}}</td>
+									  <td>{{client.prenom}}</td>
+									  <td>{{client.sexe}}</td>
+									  <td>{{client.adresse}}</td>
+                                      <td>{{client.tel}}</td>
+									  <td>{{client.profession}}</td>
+									  <td>
+				 
+										<a class="btn btn-outline-primary sm" href="{% url 'client-update' client.idf %}"> Editer</a>
+										<a class="btn btn-outline-danger sm" href="{% url 'client-delete' client.idf %}"> Supprimer</a>
+
+									</td>
+
+									
+									  
+									</tr>
+									{% endfor %}
+
+									
+					
+								  </tbody>
+								</table>
+
+						{% endblock %}

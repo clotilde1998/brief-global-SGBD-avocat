@@ -1,0 +1,46 @@
+{% extends 'avocat/layout.html' %}
+
+						{% block content %}
+							<h1>Liste du Personnel</h1>
+							<div class="col-12 d-flex justify-content-end mb-2"> <a class="btn btn-primary sm " href="{% url 'personnel-add' %}">
+								Nouveau Personnel
+								</a>
+							</div>
+								<table class="table table-bordered table-striped table-hover">
+								  <thead class="table-dark">
+									<tr>
+									
+									  <th>Nom </th>
+                                      <th>Prenom</th>
+									  <th>Adresse</th>
+									  <th>Telephone</th>
+                                      <th>Adresse Email</th>
+									  <th>Statut du personnel</th>
+									  <th>Grade du personnel</th>
+									  <th>Specialité du personnel</th>
+									  <th>Actions</th>
+									</tr>
+								  </thead>
+								  <tbody>            
+									{% for personnel  in  personnels %} 
+									<tr class="success">
+									
+									  <td>{{personnel.nom}}</td>
+									  <td>{{personnel.prenom}}</td>
+									  <td>{{personnel.adresse}}</td>
+                                      <td>{{personnel.tel}}</td>
+									  <td>{{personnel.email}}</td>
+									  <td>{{personnel.statut}}</td>
+									  <td>{{personnel.grade}}</td>
+                                      <td>{{personnel.specialite}}</td>
+									  <td><a class="btn btn-outline-primary sm" href="{% url 'personnel-update' personnel.nom %} "> Editer</a>
+										<a class="btn btn-outline-danger sm" href="{% url 'personnel-delete' personnel.nom %}"> Supprimer</a>
+									</td>
+									</tr>
+									{% endfor %}
+									
+								
+								  </tbody>
+								</table>
+
+						{% endblock %}

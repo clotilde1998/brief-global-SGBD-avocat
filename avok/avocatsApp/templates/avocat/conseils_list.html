@@ -1,0 +1,41 @@
+{% extends 'avocat/layout.html' %}
+
+						{% block content %}
+							<h1>Liste des Conseils Juridiques du Cabinet</h1>
+							<div class="col-12 d-flex justify-content-end mb-2"> <a class="btn btn-primary sm " href="{% url 'conseil-add' %}">
+								Nouveaux Conseils Juridiques
+						</a></div>
+								<table class="table table-bordered table-striped table-hover">
+								  <thead class="table-dark">
+									<tr>
+									  <th>Date  de reception </th>
+									  <th>categorie du Conseil</th>
+									  <th>Description du Conseil</th>
+									  <th>Client(e) concerné(e)</th>
+									  <th>Personnel en charge</th>
+									  <th>Actions</th>
+									</tr>
+								  </thead>
+								  <tbody>            
+									{% for conseil in  conseil %} 
+									<tr class="success">
+									  <td>{{conseil.date}}</td>
+									  <td>{{conseil.categorie}}</td>
+									  <td>{{conseil.description}}</td>
+                                      <td>{{conseil.clients.nom}}</td>
+									  <td>{{conseil.personnels.nom}}</td>
+									  <td>
+										<a class="btn btn-outline-primary sm" href="#"> Editer</a>
+										<a class="btn btn-outline-danger sm" href="#"> Supprimer</a>
+									</td>
+
+
+
+									</tr>
+									{% endfor %}
+									
+									
+								  </tbody>
+								</table>
+
+						{% endblock %}

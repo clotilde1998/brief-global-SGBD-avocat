@@ -1,0 +1,43 @@
+{% extends 'avocat/layout.html' %}
+
+						{% block content %}
+							<h1>Liste des affaires du Cabinet</h1>
+							<div class="col-12 d-flex justify-content-end mb-2"> <a class="btn btn-primary sm " href="{% url 'dossier-add' %}">
+								Nouvelle Affaire
+						</a></div>
+								<table class="table table-bordered table-striped table-hover">
+								  <thead class="table-dark">
+									<tr>
+									  <th>Date  de reception </th>
+                                      <th>Statut</th>
+									  <th>categorie</th>
+									  <th>Description</th>
+									  <th>Client(e) concerné(e)</th>
+									  <th>Personnel en charge</th>
+									  <th>Actions</th>
+									</tr>
+								  </thead>
+								  <tbody>            
+									{% for dossier in  dossiers %} 
+									<tr class="success">
+									  <td>{{dossier.date}}</td>
+									  <td>{{dossier.statut}}</td>
+									  <td>{{dossier.categorie}}</td>
+									  <td>{{dossier.description}}</td>
+                                      <td>{{dossier.clients.nom}}</td>
+									  <td>{{dossier.personnels.nom}}</td>
+									  <td>
+										<a class="btn btn-outline-primary sm" href="{% url 'dossier-update' dossier.statut %}"> Editer</a>
+										<a class="btn btn-outline-danger sm" href="{% url 'dossier-delete' dossier.statut"> Supprimer</a>
+									</td>
+
+
+
+									</tr>
+									{% endfor %}
+									
+									
+								  </tbody>
+								</table>
+
+						{% endblock %}
